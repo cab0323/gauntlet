@@ -34,7 +34,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         mGameState = new GameState(this, context);
         mSoundEngine = new SoundEngine(context);
         mHUD = new HUD(size);
-        mRenderer = new Renderer(this);
+        mRenderer = new Renderer(this, context);
         mPhysicsEngine = new PhysicsEngine();
 
 
@@ -168,7 +168,6 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
 
 
       objects.get(Level.FIRST_ALIEN).spawn(objects.get(Level.PLAYER_INDEX).getTransform());
-
 
 
         Transform.resetRelativeLocation();

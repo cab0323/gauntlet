@@ -1,5 +1,7 @@
 package com.example.gauntlet;
 
+import android.content.ContentProvider;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,10 +15,12 @@ class Renderer {
     private Canvas mCanvas;
     private SurfaceHolder mSurfaceHolder;
     private Paint mPaint;
+    private Context c;
 
-    Renderer(SurfaceView sh){
+    Renderer(SurfaceView sh, Context context){
         mSurfaceHolder = sh.getHolder();
         mPaint = new Paint();
+        c = context;
     }
 
     void draw(ArrayList<GameObject> objects, GameState gs,
@@ -44,7 +48,7 @@ class Renderer {
             }
 
             // Now we draw the HUD on top of everything else
-            hud.draw(mCanvas, mPaint, gs);
+            hud.draw(mCanvas, mPaint, gs, c);
 
 
 

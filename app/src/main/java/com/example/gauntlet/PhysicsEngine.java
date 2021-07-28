@@ -1,6 +1,5 @@
 package com.example.gauntlet;
 
-import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.Log;
 
@@ -63,9 +62,11 @@ class PhysicsEngine {
                                     go1.setInactive();
                                     se.playAlienExplode();
                                     break;
+
                                 case "Player with PassKey":
                                     Log.d("Player", " ");
                                     Level.isLevelFinished = true;
+                                    mGameState.setKeyStatus(true);
                                     break;
 
                                 case "Player with PowerUp":

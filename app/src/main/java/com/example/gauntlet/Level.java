@@ -23,6 +23,7 @@ class Level {
     public static final int LAST_ALIEN = 6;
     public static final int GOBLIN = 6;
     public static final int TROLL = 7;
+    public static final int POWERUP_INDEX = 13;
 
     public static final int FIRST_ALIEN_ARROW = 8;
     public static final int LAST_ALIEN_ARROW = 12;
@@ -106,6 +107,9 @@ class Level {
         // create passkey
         objects.add(PASSKEY_INDEX, factory
                 .create(new PassKeySpec()));
+
+        //create a powerup object
+        objects.add(POWERUP_INDEX, factory.create(new PowerUpSpec()));
 
 
         return objects;

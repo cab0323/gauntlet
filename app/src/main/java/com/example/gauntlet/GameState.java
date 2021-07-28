@@ -9,6 +9,9 @@ final class GameState {
     private static volatile boolean mGameOver = true;
     private static volatile boolean mDrawing = false;
 
+    //if player has key, key will show on HUD
+    private static volatile boolean mHasKey = false;
+
     // This object will have access to the deSpawnReSpawn method
     // in GameEngine- once it is initialized
     private GameStarter gameStarter;
@@ -16,7 +19,7 @@ final class GameState {
 
     private int mScore;
     private int mHighScore;
-    private int mNumShips;
+    private int mHealth;
 
     // This is how we will make all the high scores persist
     private SharedPreferences.Editor mEditor;
@@ -51,7 +54,7 @@ final class GameState {
 
     void startNewGame(){
         mScore = 0;
-        mNumShips = 3;
+        mHealth = 3;
         // Don't want to be drawing objects
         // while deSpawnReSpawn is
         // clearing them and spawning them again
@@ -65,16 +68,16 @@ final class GameState {
 
 
     void loseLife(SoundEngine se){
-//        mNumShips--;
+//         mHealth--;
 //        se.playPlayerExplode();
-        if(mNumShips == 0){
+        if(mHealth == 0){
             pause();
             endGame();
         }
     }
 
-    int getNumShips(){
-        return mNumShips;
+    int getHealth(){
+        return mHealth;
     }
 
     void increaseScore(){
@@ -132,6 +135,14 @@ final class GameState {
         return mGameOver;
     }
 
+    //when player has key set to true
+    void setKeyStatus(boolean keyStatus){
+        mHasKey = keyStatus;
+    }
 
+    boolean getKey(){
+        return mHasKey;
+    }
+    //=======
 
 }

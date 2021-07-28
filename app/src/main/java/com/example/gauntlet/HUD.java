@@ -1,12 +1,22 @@
 package com.example.gauntlet;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.service.controls.templates.ControlTemplate;
+import android.util.Log;
 import android.util.Pair;
 
+
+//test
+import android.graphics.Bitmap;
+import android.content.Context;
+import android.content.res.Resources;
+
+//
 import java.util.ArrayList;
 
 class HUD {
@@ -22,7 +32,6 @@ class HUD {
         mScreenHeight = size.y;
         mScreenWidth = size.x;
         mTextFormatting = size.x / 50;
-
         prepareControls();
     }
 
@@ -54,22 +63,33 @@ class HUD {
 
     }
 
-    void draw(Canvas c, Paint p, GameState gs){
+    void draw(Canvas c, Paint p, GameState gs, Context context){
 
-        // Draw the HUD
+        // Draw the black rectangle on where HUD will be
+        p.setColor(Color.argb(255,0,0,0));
+        c.drawRect(5, 0,mScreenWidth / 4, mTextFormatting * 2, p);
+
+        //draw HUD
         p.setColor(Color.argb(255,255,255,255));
         p.setTextSize(mTextFormatting);
-        c.drawText("Hi: " + gs.getHighScore(),
+        c.drawText("Health: " + gs.getHealth(),
                 mTextFormatting,mTextFormatting,p);
 
         c.drawText("Score: " + gs.getScore(),
-                mTextFormatting,mTextFormatting * 2,p);
+                mTextFormatting * 6,mTextFormatting,p);
 
-        c.drawText("Lives: " + gs.getNumShips(),
-                mTextFormatting,mTextFormatting * 3,p);
+
+        if(gs.getKey()) {
+            //if player has a key show it on HUD
+            int keyID = context.getResources().getIdentifier("hud_key", "drawable", context.getPackageName());
+            Bitmap bitKey = BitmapFactory.decodeResource(context.getResources(), keyID);
+            bitKey = Bitmap.createScaledBitmap(bitKey, mTextFormatting * 2, mTextFormatting * 2, false);
+            c.drawBitmap(bitKey, (mScreenWidth / 4) - 80, 0, p);
+        }
 
         if(gs.getGameOver()){
             p.setTextSize(mTextFormatting * 5);
+
             c.drawText("PRESS PLAY",
                     mScreenWidth /4, mScreenHeight /2 ,p);
         }

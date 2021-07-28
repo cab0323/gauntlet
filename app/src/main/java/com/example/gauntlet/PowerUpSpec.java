@@ -11,7 +11,8 @@ public class PowerUpSpec extends ObjectSpec {
     private static final String[] components = new String[] {
             "NPCGraphicsComponent",
             "StdGraphicsComponent",
-            "PowerUpSpawnComponent"
+            "PowerUpSpawnComponent",
+            "SimpleMovementComponent"
     };
 
     PowerUpSpec(){
