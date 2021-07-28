@@ -20,13 +20,12 @@ class Level {
     public static final int LAST_PLAYER_ARROW = 4;
     public static int mNextPlayerArrow;
     public static final int FIRST_ALIEN = 5;
-    public static final int LAST_ALIEN = 6;
-    public static final int GOBLIN = 6;
-    public static final int TROLL = 7;
-    public static final int POWERUP_INDEX = 13;
+    public static final int LAST_ALIEN = 7;
+    public static final int GOBLIN = 8;
+    public static final int TROLL = 9;
 
-    public static final int FIRST_ALIEN_ARROW = 8;
-    public static final int LAST_ALIEN_ARROW = 12;
+    public static final int FIRST_ALIEN_ARROW = 10;
+    public static final int LAST_ALIEN_ARROW = 14;
     public static int mNextAlienArrow;
     public static int[][] mMapMatrix;
     private static final int MAP_ROWS = 32;
@@ -85,7 +84,8 @@ class Level {
         mNextPlayerArrow = FIRST_PLAYER_ARROW;
 
         // Create some aliens
-        objects.add(FIRST_ALIEN, factory
+        for (int i = FIRST_ALIEN; i <= LAST_ALIEN; i++)
+        objects.add(i, factory
                 .create(new GhostChaseSpec()));
 
         //Create goblin
@@ -107,9 +107,6 @@ class Level {
         // create passkey
         objects.add(PASSKEY_INDEX, factory
                 .create(new PassKeySpec()));
-
-        //create a powerup object
-        objects.add(POWERUP_INDEX, factory.create(new PowerUpSpec()));
 
 
         return objects;

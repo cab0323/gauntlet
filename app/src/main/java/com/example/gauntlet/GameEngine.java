@@ -167,7 +167,9 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
                         .getTransform());
 
 
-      objects.get(Level.FIRST_ALIEN).spawn(objects.get(Level.PLAYER_INDEX).getTransform());
+     for (int i = Level.FIRST_ALIEN; i <= Level.LAST_ALIEN; i++) {
+         objects.get(i).spawn(objects.get(Level.PLAYER_INDEX).getTransform());
+     }
 
 
         Transform.resetRelativeLocation();

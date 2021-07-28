@@ -2,7 +2,10 @@ package com.example.gauntlet;
 
 import android.content.Context;
 import android.graphics.*;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -83,6 +86,17 @@ class PlayerMovementComponent implements MovementComponent {
                     location.y = initPlayerLoc.y;
                     break;
                 }
+            }
+
+            if (RectF.intersects(t.getCollider(), gameMap.exitObstacle.getLocation())){
+                Log.d("Toast: ", "toast is here, brah");
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast = Toast.makeText(context, "Next Level Coming Soon!", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
             }
 
 

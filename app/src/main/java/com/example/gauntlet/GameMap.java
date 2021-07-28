@@ -2,6 +2,7 @@ package com.example.gauntlet;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.Log;
 
@@ -20,6 +21,8 @@ public class GameMap {
     public static ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
     private Point lowResFactor;
     private SpatialCollision localCollisionComponent;
+    public static Obstacle exitObstacle;
+
 
 
     GameMap(Context c) {
@@ -63,6 +66,16 @@ public class GameMap {
 //                        }
 
                     }
+                    if (mMapMatrix[currentRow][i] == 3){
+                        exitObstacle = new Obstacle(new RectF(((i * lowResFactor.x)), (currentRow * lowResFactor.y),
+                                (i * lowResFactor.x) + 160, (currentRow * lowResFactor.y) + 160));
+                    }
+                    // if MapMatrix at the current position holds a 0, add the middle of that location
+                    // to the list of spawnable locations for other classes to use
+                    if (mMapMatrix[currentRow][i] == 0) {
+                        Transform.getSpawnableLocations().add(new PointF((i * lowResFactor.x),
+                                (currentRow * lowResFactor.y)));
+                    }
 
                 }
 
@@ -77,4 +90,6 @@ public class GameMap {
         }
 
     }
+
+
 }

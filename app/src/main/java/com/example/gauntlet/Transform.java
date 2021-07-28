@@ -5,6 +5,8 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 class Transform {
 
     // These two members are for scrolling background
@@ -33,6 +35,9 @@ class Transform {
     public static Point bitmapRes;
     public PointF overallLocation;
     public PointF drawableLocation;
+
+    public static ArrayList<PointF> spawnableLocations = new ArrayList<>();
+
 
 
 
@@ -270,6 +275,9 @@ class Transform {
     void resetMovement() {
         mFacingRight = false;
     }
+
+    public static ArrayList<PointF> getSpawnableLocations() { return spawnableLocations; }
+
 
 
 
